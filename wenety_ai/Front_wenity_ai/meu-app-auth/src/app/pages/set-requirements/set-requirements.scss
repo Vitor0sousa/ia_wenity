@@ -1,0 +1,45 @@
+.requirements-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0,123,255,0.3);
+    }
+  }
+
+   textarea {
+     resize: vertical;
+     min-height: 80px;
+   }
+
+   .error-message {
+     color: #f44336;
+     font-size: 0.85em;
+     margin-top: 5px;
+   }
+}

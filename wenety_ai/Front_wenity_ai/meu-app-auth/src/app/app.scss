@@ -1,0 +1,95 @@
+/* Estilos Globais ou do AppComponent */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden; // Previne scroll no body
+}
+
+.fullscreen-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.hiring-wizard {
+  flex-grow: 1; // Ocupa o espaço
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  overflow-y: auto; // Adiciona scroll se necessário dentro do wizard
+  background-color: #ffffff;
+}
+
+/* Estilos comuns para os contêineres das etapas */
+.step-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Faz o conteúdo da etapa ocupar o espaço */
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+
+   h2 {
+     margin-top: 0;
+     border-bottom: 1px solid #eee;
+     padding-bottom: 10px;
+     color: #333;
+   }
+   
+   p {
+     color: #555;
+     font-size: 1.1em;
+   }
+}
+
+/* Estilos comuns para botões de navegação */
+.navigation-buttons {
+  margin-top: auto; /* Empurra os botões para baixo */
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  button {
+    padding: 12px 24px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    // Estilo específico para botão cancelar/voltar (vermelho)
+    &.btn-cancel {
+       background-color: #f44336;
+       color: white;
+       &:hover:not(:disabled) { background-color: #d32f2f; }
+    }
+
+     // Estilo específico para botão próximo/finalizar (azul)
+     &.btn-primary {
+        background-color: #007bff;
+        color: white;
+        &:hover:not(:disabled) { background-color: #0056b3; }
+     }
+     
+     // Estilo para botão Voltar (cinza)
+     &.btn-secondary {
+        background-color: #6c757d;
+        color: white;
+         &:hover:not(:disabled) { background-color: #5a6268; }
+     }
+  }
+}

@@ -1,0 +1,87 @@
+<!--
+Componente de Fundo Animado
+As esferas animadas são geradas e controladas pelo CSS.
+-->
+
+<div class="background-animation">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<!--
+Container Principal
+Centraliza o card de login na tela.
+-->
+
+<div class="login-container">
+<div class="login-card">
+<!--
+Cabeçalho do Card
+Contém o título e a descrição.
+-->
+<div class="login-header">
+<h1>Acesse sua conta</h1>
+<p>Digite suas credenciais para continuar</p>
+</div>
+
+<!-- Mensagem de Erro -->
+<div *ngIf="errorMessage" class="error-message">
+  <i class="fas fa-exclamation-circle"></i>
+  {{ errorMessage }}
+</div>
+
+<!-- 
+  Formulário de Login 
+  O (ngSubmit) chama o método onSubmit do componente.
+-->
+<form class="login-form" (ngSubmit)="onSubmit()">
+  <!-- Campo de E-mail -->
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <div class="input-container">
+      <i class="fas fa-envelope"></i>
+      <input id="email" type="email" [(ngModel)]="credentials.email" name="email" required>
+    </div>
+  </div>
+
+  <!-- Campo de Senha -->
+  <div class="form-group">
+    <label for="password">Senha</label>
+    <div class="input-container">
+      <i class="fas fa-lock"></i>
+      <input id="password" type="password" [(ngModel)]="credentials.password" name="password" required>
+    </div>
+  </div>
+
+  <!-- Opções do Formulário (Lembrar-me e Esqueci a senha) -->
+  <div class="form-options">
+    <label class="checkbox-container">
+      <input type="checkbox" name="rememberMe" />
+      <span class="checkmark"></span>
+      Lembrar-me
+    </label>
+    <a href="http://localhost:4200/recuperar-senha" class="forgot-password">Esqueci minha senha</a>
+  </div>
+
+  <!-- Botão de Login -->
+  <button type="submit" class="login-button">Entrar</button>
+</form>
+
+<!-- 
+  Rodapé do Card 
+  Link para a página de cadastro.
+-->
+<div class="login-footer">
+  <p>Não tem uma conta? <a href="http://localhost:4200/cadastro">Cadastre-se</a></p>
+</div>
+
+</div>
+</div>

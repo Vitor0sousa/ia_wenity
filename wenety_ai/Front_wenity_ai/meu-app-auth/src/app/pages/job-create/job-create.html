@@ -1,0 +1,28 @@
+<div class="wizard-container">
+  <!-- Barra de Progresso -->
+  <div class="steps-indicator">
+    <div class="step" [class.active]="service.currentStep() >= 1">1. Vaga</div>
+    <div class="line" [class.active]="service.currentStep() > 1"></div>
+    <div class="step" [class.active]="service.currentStep() >= 2">2. Requisitos</div>
+    <div class="line" [class.active]="service.currentStep() > 2"></div>
+    <div class="step" [class.active]="service.currentStep() >= 3">3. Currículos</div>
+  </div>
+
+  <div class="card-content">
+    <!-- Renderiza o componente da etapa atual -->
+    <div [ngSwitch]="service.currentStep()">
+      <app-select-job *ngSwitchCase="1"></app-select-job>
+      <app-set-requirements *ngSwitchCase="2"></app-set-requirements>
+      <app-upload-resumes *ngSwitchCase="3"></app-upload-resumes>
+      
+      <!-- Fallback caso algo dê errado -->
+      <div *ngSwitchDefault>
+        <p>Carregando funil... Se nada aparecer, clique em cancelar.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cancel-action">
+    <button (click)="cancel()">Cancelar Processo</button>
+  </div>
+</div>

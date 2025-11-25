@@ -1,0 +1,18 @@
+<div class="step-container">
+  <h2>Etapa 1: Selecionar Vaga</h2>
+  <p>Escolha para qual vaga você deseja contratar:</p>
+
+  <ul class="job-list">
+    <li *ngFor="let job of jobOpenings"
+        (click)="selectJob(job)"
+        [class.selected]="job.id === selectedJobId">
+      <h3>{{ job.title }}</h3>
+      <p *ngIf="job.description">{{ job.description }}</p>
+    </li>
+  </ul>
+
+  <div class="navigation-buttons">
+    <button (click)="cancel()" class="btn-cancel">Cancelar</button>
+    <button (click)="next()" [disabled]="!selectedJobId" class="btn-primary">Próximo</button>
+  </div>
+</div>

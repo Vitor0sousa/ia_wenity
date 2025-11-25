@@ -1,0 +1,399 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #000000, #072b6e, #071e7c);
+    padding: 15px;
+}
+
+/* COMPONENTE DE FUNDO ANIMADO */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+.background-animation span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+                0 0 0 8px rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(255, 255, 255, 0.1);
+    animation: animate 3s linear infinite;
+}
+
+.background-animation span::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, #fff, transparent);
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(315deg) translateX(0);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(315deg) translateX(-1000px);
+        opacity: 0;
+    }
+}
+
+.background-animation span:nth-child(1) {
+    top: 0;
+    right: 0;
+    left: initial;
+    animation-delay: 0;
+    animation-duration: 1s;
+}
+
+.background-animation span:nth-child(2) {
+    top: 0;
+    right: 80px;
+    left: initial;
+    animation-delay: 0.2s;
+    animation-duration: 3s;
+}
+
+.background-animation span:nth-child(3) {
+    top: 80px;
+    right: 0px;
+    left: initial;
+    animation-delay: 0.4s;
+    animation-duration: 2s;
+}
+
+.background-animation span:nth-child(4) {
+    top: 0px;
+    right: 180px;
+    left: initial;
+    animation-delay: 0.6s;
+    animation-duration: 1.5s;
+}
+
+.background-animation span:nth-child(5) {
+    top: 0px;
+    right: 400px;
+    left: initial;
+    animation-delay: 0.8s;
+    animation-duration: 2.5s;
+}
+
+.background-animation span:nth-child(6) {
+    top: 0px;
+    right: 600px;
+    left: initial;
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
+
+.background-animation span:nth-child(7) {
+    top: 300px;
+    right: 0px;
+    left: initial;
+    animation-delay: 1.4s;
+    animation-duration: 1.25s;
+}
+
+.background-animation span:nth-child(8) {
+    top: 0px;
+    right: 700px;
+    left: initial;
+    animation-delay: 1.4s;
+    animation-duration: 1.25s;
+}
+
+.background-animation span:nth-child(9) {
+    top: 0px;
+    right: 1000px;
+    left: initial;
+    animation-delay: 0.75s;
+    animation-duration: 2.25s;
+}
+
+.background-animation span:nth-child(10) {
+    top: 0px;
+    right: 450px;
+    left: initial;
+    animation-delay: 2.75s;
+    animation-duration: 2.25s;
+}
+
+/* CONTAINER PRINCIPAL */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* CARD DE CADASTRO - MESMO EFEITO DO LOGIN */
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    animation: fadeIn 0.5s ease-out;
+    transition: all 0.3s ease;
+}
+
+/* EFEITO DE HOVER SIMPLES - IGUAL AO LOGIN */
+.login-card:hover {
+    box-shadow: 0px 0px 30px 1px rgb(255, 255, 255);
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CABEÇALHO */
+.login-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.login-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #7f8c8d;
+    font-size: 13px;
+}
+
+/* FORMULÁRIO */
+.login-form {
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 13px;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-container i {
+    position: absolute;
+    left: 12px;
+    color: #7f8c8d;
+    z-index: 1;
+    font-size: 14px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px 12px 10px 35px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+    color: #2c3e50;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    height: 40px;
+}
+
+.input-container input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* OPÇÕES DO FORMULÁRIO */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: #34495e;
+    position: relative;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-container a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.checkbox-container a:hover {
+    text-decoration: underline;
+}
+
+.checkmark {
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.checkmark:after {
+    content: "";
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+    width: 3px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-top: -1px;
+}
+
+/* BOTÃO DE CADASTRO */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 42px;
+}
+
+.login-button:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+/* RODAPÉ */
+.login-footer {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.login-footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.login-footer a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .login-card {
+        padding: 20px 15px;
+        margin: 15px 10px;
+    }
+    
+    .login-header h1 {
+        font-size: 20px;
+    }
+    
+    .input-container input {
+        padding: 8px 10px 8px 32px;
+        font-size: 13px;
+        height: 38px;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .checkbox-container {
+        font-size: 11px;
+    }
+    
+    .login-button {
+        height: 40px;
+        font-size: 13px;
+    }
+}

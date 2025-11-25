@@ -1,0 +1,180 @@
+/* --- Variáveis de Tema (Fundo Escuro + Container Branco) --- */
+$primary-color: #0099ff; // Azul principal vibrante
+$primary-color-light: rgba($primary-color, 0.1); // Para seleção no fundo branco
+$primary-color-hover: lighten($primary-color, 10%);
+
+$bg-page-dark: #1a1e2a; // Fundo da PÁGINA (azul escuro)
+$bg-container-white: #ffffff; // Fundo do CONTAINER
+$bg-list-item-hover: #f8f9fa; // Hover dos itens da lista (cinza claro)
+
+$text-dark-primary: #212529; // Texto principal no container
+$text-dark-secondary: #6c757d; // Texto secundário no container
+$text-disabled: #adb5bd; // Texto desabilitado
+
+$border-color: #dee2e6; // Borda clara para o container
+$radius: 8px;
+$shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+
+/* --- Fundo da Página (Exemplo) --- */
+/* Aplique isso ao seu seletor de página principal ou body */
+body {
+  background-color: $bg-page-dark;
+  padding: 40px 0; // Adiciona espaço para o container "flutuar"
+}
+:host {
+  background-color: $bg-page-dark;
+}
+
+/* --- Container Principal da Etapa --- */
+.step-container {
+  background: $bg-container-white;
+  padding: 24px 30px;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  max-width: 800px;
+  margin: 0 auto; // Centraliza (removido margin-top se o body/wrapper já tiver padding)
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $border-color;
+
+  h2 {
+    color: $text-dark-primary;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  > p { // O 'p' diretamente filho do container
+    color: $text-dark-secondary;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+  }
+}
+
+/* --- Lista de Vagas --- */
+.job-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+  max-height: 50vh;
+  overflow-y: auto;
+  padding: 4px;
+
+  /* Customização da barra de scroll (opcional) */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $bg-list-item-hover;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $border-color;
+    border-radius: 4px;
+    &:hover {
+      background-color: $text-disabled;
+    }
+  }
+
+
+  li {
+    border: 2px solid $border-color;
+    border-radius: $radius;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background: $bg-container-white; // Fundo branco
+
+    h3 {
+      margin: 0 0 4px 0;
+      color: $primary-color; // Título em azul
+      font-size: 1.2rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    p {
+      margin: 0;
+      color: $text-dark-secondary; // Texto secundário escuro
+      font-size: 0.95rem;
+    }
+
+    // Estilo de Hover
+    &:hover {
+      border-color: $primary-color;
+      background: $bg-list-item-hover;
+      transform: translateY(-2px);
+    }
+
+    // Estilo de Item Selecionado
+    &.selected {
+      border-color: $primary-color;
+      background-color: $primary-color-light; // Fundo azul claro
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.25);
+      
+      h3 {
+        color: darken($primary-color, 10%); // Azul um pouco mais escuro
+      }
+    }
+  }
+}
+
+/* --- Botões de Navegação --- */
+.navigation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid $border-color; // Borda clara
+
+  // Estilos base para os botões
+  button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  // Botão Primário (Próximo)
+  .btn-primary {
+    background-color: $primary-color;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba($primary-color, 0.3);
+
+    &:hover {
+      background-color: $primary-color-hover;
+      box-shadow: 0 4px 12px rgba($primary-color, 0.4);
+      transform: translateY(-1px);
+    }
+
+    // Estilo do botão desabilitado
+    &:disabled {
+      background-color: $border-color;
+      color: $text-disabled;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+  }
+
+  // Botão Secundário (Cancelar)
+  .btn-cancel {
+    background-color: transparent;
+    color: $text-dark-secondary;
+    border: 1px solid $border-color;
+
+    &:hover {
+      background-color: $bg-list-item-hover;
+      border-color: $text-dark-secondary;
+      color: $text-dark-primary;
+    }
+  }
+}

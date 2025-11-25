@@ -1,0 +1,152 @@
+<div class="page-container" *ngIf="job(); else loadingTpl">
+  
+  <header class="job-header">
+    <div class="title-group">
+      <button routerLink="/dashboard/requisicoes" class="btn-back">← Voltar</button>
+      <div>
+        <h1>{{ job().title }}</h1>
+        <span class="badge status-aberta">{{ job().status }}</span>
+      </div>
+    </div>
+    <div class="meta">
+      <p><strong>Criado em:</strong> {{ job().created_at | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Nível:</strong> {{ job().requirements?.experienceLevel }}</p>
+    </div>
+  </header>
+
+  <section class="requirements-card">
+    <h3>🎯 Critérios de Análise da IA</h3>
+    <div class="criteria-grid">
+      <div class="criteria-item">
+        <strong>Obrigatórios:</strong>
+        <p>{{ getSkillsText(job().requirements?.requiredSkills) }}</p>
+      </div>
+      <div class="criteria-item">
+        <strong>Desejáveis:</strong>
+        <p>{{ getSkillsText(job().requirements?.niceToHaveSkills) }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ranking-section">
+    <h2>🏆 Ranking de Candidatos</h2>
+    
+    <div class="table-responsive" *ngIf="job().applications && job().applications.length > 0; else noCandidates">
+      <table class="ranking-table">
+        <thead>
+          <tr>
+            <th class="center">Score</th>
+            <th>Candidato</th>
+            <th>Contato</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let app of job().applications">
+            <td class="center">
+              <div class="score-circle" [class.high]="app.score >= 80" [class.med]="app.score >= 50 && app.score < 80" [class.low]="app.score < 50">
+                {{ app.score }}%
+              </div>
+            </td>
+            <td>
+              <strong>{{ app.name }}</strong><br>
+              <small class="text-muted">Analisado em {{ app.applied_at | date:'short' }}</small>
+            </td>
+            <td>
+              {{ app.email }}<br>
+              <small>{{ app.phone }}</small>
+            </td>
+            <td>
+              <span class="status-tag">{{ app.status }}</span>
+            </td>
+            <td>
+              <button class="btn-view" (click)="openAnalysisModal(app)">
+                Ver Análise
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noCandidates>
+      <div class="empty-state">
+        <p>Nenhum candidato analisado para esta vaga ainda.</p>
+      </div>
+    </ng-template>
+  </section>
+
+</div>
+
+<ng-template #loadingTpl>
+  <div *ngIf="loading(); else errorTpl" class="loading">
+    Carregando detalhes...
+  </div>
+</ng-template>
+<ng-template #errorTpl>
+  <div class="loading">
+    Houve um erro ao carregar a vaga.
+    <button routerLink="/dashboard/requisicoes" class="btn-back">← Voltar</button>
+  </div>
+</ng-template>
+
+
+<div class="modal-overlay" *ngIf="selectedCandidateAnalysis()" (click)="closeAnalysisModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    
+    <div class="modal-header">
+      <h3>Análise de: {{ selectedCandidateAnalysis()?.nome_candidato || 'Candidato' }}</h3>
+      <button class="btn-close" (click)="closeAnalysisModal()">×</button>
+    </div>
+
+    <div class="modal-body" *ngIf="selectedCandidateAnalysis() as analysis">
+      
+      <div class="analysis-section" *ngIf="analysis.resumo_geral">
+        <h4 class="section-title">Resumo</h4>
+        <p class="summary-text">{{ analysis.resumo_geral }}</p>
+      </div>
+      
+      <div class="two-column-grid">
+        <div class="analysis-section strengths">
+          <h4 class="section-title text-success">
+            <span class="icon">✅</span> Pontos Fortes
+          </h4>
+          <ul class="clean-list">
+            <li *ngFor="let item of parseTextToList(analysis.pontos_fortes)">{{ item }}</li>
+            <li *ngIf="!analysis.pontos_fortes || parseTextToList(analysis.pontos_fortes).length === 0">
+              <span class="text-muted">Nenhum detalhe fornecido.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="analysis-section weaknesses">
+          <h4 class="section-title text-danger">
+            <span class="icon">❌</span> Pontos de Atenção
+          </h4>
+          <ul class="clean-list">
+             <li *ngFor="let item of parseTextToList(analysis.pontos_fracos)">{{ item }}</li>
+             <li *ngIf="!analysis.pontos_fracos || parseTextToList(analysis.pontos_fracos).length === 0">
+              <span class="text-muted">Nenhum detalhe fornecido.</span>
+             </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="analysis-section skills-found">
+        <h4 class="section-title">
+          <span class="icon">💡</span> Habilidades Encontradas
+        </h4>
+        <div class="skill-tags">
+          <span class="skill-tag" *ngFor="let skill of analysis.habilidades_encontradas">
+            {{ skill }}
+          </span>
+          <span *ngIf="!analysis.habilidades_encontradas || analysis.habilidades_encontradas.length === 0" class="text-muted">
+            Nenhuma habilidade listada.
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

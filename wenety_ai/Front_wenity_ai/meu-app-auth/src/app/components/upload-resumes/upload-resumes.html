@@ -1,0 +1,45 @@
+<div class="step-container">
+  <h2>Etapa 3: Carregar Currículos <span *ngIf="(selectedJob$ | async) as job">para {{ job.title }}</span></h2>
+  <p>Faça o upload dos currículos (PDF, DOCX, etc.) para análise:</p>
+
+  <!-- Resumo dos Requisitos -->
+  <div *ngIf="(requirements$ | async) as reqs" class="requirements-summary">
+    <strong>Requisitos Definidos:</strong>
+    <ul>
+      <li>Nível: {{ reqs.experienceLevel }}</li>
+      <li *ngIf="reqs.requiredSkills && reqs.requiredSkills.length > 0">Obrigatórios: {{ reqs.requiredSkills.join(', ') }}</li>
+      <li *ngIf="reqs.niceToHaveSkills && reqs.niceToHaveSkills.length > 0">Desejáveis: {{ reqs.niceToHaveSkills.join(', ') }}</li>
+      <li *ngIf="reqs.specificRequirements">Outros: {{ reqs.specificRequirements }}</li>
+    </ul>
+  </div>
+
+  <!-- Área de Upload -->
+  <div class="upload-area">
+    <label for="resumeUpload" class="upload-button" [class.loading]="isLoading()">
+       {{ isLoading() ? 'Analisando...' : 'Escolher Arquivos' }}
+    </label>
+    <input type="file" id="resumeUpload" (change)="onFileSelected($event)" multiple 
+           accept=".pdf,.doc,.docx,.txt" [disabled]="isLoading()">
+    
+    <div *ngIf="selectedFiles().length > 0 && !isLoading()" class="file-list">
+      <p>Arquivos selecionados ({{ selectedFiles().length }}):</p>
+      <ul>
+        <li *ngFor="let file of selectedFiles()">{{ file.name }} ({{ (file.size / 1024).toFixed(1) }} KB)</li>
+      </ul>
+    </div>
+  </div>
+
+   <!-- Indicador de Carregamento -->
+   <div *ngIf="isLoading()" class="loading-indicator">
+     <div class="spinner"></div>
+     Analisando currículos... Por favor, aguarde. Isso pode levar alguns segundos.
+   </div>
+
+  <!-- Botões de Navegação -->
+  <div class="navigation-buttons">
+    <button (click)="previous()" class="btn-secondary" [disabled]="isLoading()">Voltar</button>
+    <button (click)="finish()" [disabled]="selectedFiles().length === 0 || isLoading()" class="btn-primary">
+       {{ isLoading() ? 'Analisando...' : 'Finalizar e Analisar' }}
+    </button>
+  </div>
+</div>

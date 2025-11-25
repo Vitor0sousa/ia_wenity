@@ -1,0 +1,92 @@
+<div class="background-animation">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h1>Crie sua conta</h1>
+            <p>Preencha os dados abaixo para se cadastrar</p>
+        </div>
+
+        <form class="login-form" (ngSubmit)="onSubmit()">
+            
+            <div class="form-group">
+                <label for="name">Nome completo</label>
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Seu nome completo"
+                        required
+                        [(ngModel)]="registerData.name"> </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <div class="input-container">
+                    <i class="fas fa-envelope"></i>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="seu@email.com"
+                        required
+                        [(ngModel)]="registerData.email"> </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Crie uma senha"
+                        required
+                        [(ngModel)]="registerData.password"> </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirmar senha</label>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input 
+                        type="password" 
+                        id="confirm-password" 
+                        name="confirm-password" 
+                        placeholder="Digite novamente sua senha"
+                        required
+                        [(ngModel)]="registerData.confirmPassword"> </div>
+            </div>
+
+            <div class="form-options">
+                <label class="checkbox-container">
+                    <input 
+                        type="checkbox" 
+                        name="terms"
+                        [(ngModel)]="registerData.termsAccepted"> <span class="checkmark"></span>
+                    Aceito os <a href="#">termos e condições</a>
+                </label>
+            </div>
+
+            <button type="submit" class="login-button" [disabled]="isSubmitting">
+                Criar conta
+            </button>
+        </form>
+
+        <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+        </div>
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+
+        <div class="login-footer">
+            <p>Já tem uma conta? <a routerLink="/login">Faça login</a></p>
+        </div>
+    </div>
+</div>

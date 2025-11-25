@@ -1,0 +1,50 @@
+.wizard-container {
+  max-width: 800px;
+  margin: 1rem auto;
+}
+
+.steps-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+  .step {
+    font-weight: bold;
+    color: #aaa;
+    padding: 0 1rem;
+    transition: color 0.3s;
+    &.active { color: #007bff; }
+  }
+  .line {
+    flex: 1;
+    height: 3px;
+    background: #eee;
+    transition: background 0.3s;
+    &.active { background: #007bff; }
+  }
+}
+
+.card-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.cancel-action {
+  text-align: center;
+  margin-top: 1rem;
+  button {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 0.9rem;
+    &:hover { color: #ff4d4d; text-decoration: underline; }
+  }
+}

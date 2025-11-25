@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="header-actions">
+    <h1>Minhas Requisições</h1>
+    <!-- O routerLink aqui está correto, pois aponta para o funil -->
+    <button class="btn-new" routerLink="/dashboard/nova-vaga">+ Nova Vaga</button>
+  </div>
+
+  <!-- Lendo o signal de loading com () -->
+  <div *ngIf="loading()" class="loading">
+    Carregando vagas... (Se isso não sumir, o backend falhou)
+  </div>
+
+  <!-- Lendo os signals de loading e jobs com () -->
+  <div *ngIf="!loading() && jobs().length === 0" class="empty-state">
+    <p>Você ainda não tem nenhuma vaga. Crie a primeira!</p>
+  </div>
+
+  <!-- Lendo os signals de loading e jobs com () -->
+  <div class="job-grid" *ngIf="!loading() && jobs().length > 0">
+    
+    <!-- Loop sobre o signal 'jobs()' -->
+    <div class="job-card" *ngFor="let job of jobs()" [routerLink]="['/dashboard/requisicoes', job.id]">
+      <div class="card-header">
+        <h3>{{ job.title }}</h3>
+        <span class="status-badge" [class.open]="job.status === 'ABERTA'">{{ job.status }}</span>
+      </div>
+      
+      <p class="desc">{{ (job.description || 'Sem descrição') | slice:0:100 }}{{ (job.description?.length || 0) > 100 ? '...' : '' }}</p>
+      
+      <div class="card-footer">
+        <div class="stat">
+          <strong>{{ job.candidate_count || 0 }}</strong>
+          <span>Candidatos</span>
+        </div>
+        <div class="date">
+          Criado em {{ job.created_at | date:'dd/MM/yyyy' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

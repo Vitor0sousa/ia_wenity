@@ -1,0 +1,37 @@
+<div class="step-container">
+  <h2>Etapa 2: Definir Requisitos <span *ngIf="(selectedJob$ | async) as job">para {{ job.title }}</span></h2>
+  <p>Especifique os requisitos desejados para os candidatos:</p>
+
+  <form [formGroup]="requirementsForm" class="requirements-form">
+    <div class="form-group">
+      <label for="experienceLevel">Nível de Experiência*:</label>
+      <select id="experienceLevel" formControlName="experienceLevel">
+        <option value="" disabled>Selecione...</option>
+        <option *ngFor="let level of experienceLevels" [value]="level">{{ level }}</option>
+      </select>
+       <div *ngIf="requirementsForm.controls['experienceLevel'].invalid && requirementsForm.controls['experienceLevel'].touched" class="error-message">
+         Campo obrigatório.
+       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="requiredSkills">Habilidades Obrigatórias (separadas por vírgula):</label>
+      <input type="text" id="requiredSkills" formControlName="requiredSkills" placeholder="Ex: Angular, TypeScript, RxJS">
+    </div>
+
+    <div class="form-group">
+      <label for="niceToHaveSkills">Habilidades Desejáveis (separadas por vírgula):</label>
+      <input type="text" id="niceToHaveSkills" formControlName="niceToHaveSkills" placeholder="Ex: NgRx, Testes unitários, Docker">
+    </div>
+
+    <div class="form-group">
+      <label for="specificRequirements">Outros Requisitos (texto livre):</label>
+      <textarea id="specificRequirements" formControlName="specificRequirements" rows="4" placeholder="Ex: Disponibilidade para viagens, inglês fluente..."></textarea>
+    </div>
+  </form>
+
+  <div class="navigation-buttons">
+    <button (click)="previous()" class="btn-secondary">Voltar</button>
+    <button (click)="next()" [disabled]="requirementsForm.invalid" class="btn-primary">Próximo</button>
+  </div>
+</div>

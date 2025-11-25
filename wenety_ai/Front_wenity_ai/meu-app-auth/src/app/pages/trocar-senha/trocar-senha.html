@@ -1,0 +1,48 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Troque a senha</h1>
+      <p>Digite o token recebido por e-mail e sua nova senha</p>
+    </div>
+
+    <!-- Mensagem de sucesso -->
+    <div *ngIf="successMessage" class="success-message">
+      <i class="fas fa-check-circle"></i>
+      {{ successMessage }}
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div *ngIf="errorMessage" class="error-message">
+      <i class="fas fa-exclamation-circle"></i>
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="trocarSenha()">
+      <div class="form-group">
+        <label for="token">Token</label>
+        <input
+          id="token"
+          type="text"
+          [(ngModel)]="credentials.token"
+          name="token"
+          required
+          placeholder="Digite o token"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="newPassword">Nova Senha</label>
+        <input
+          id="newPassword"
+          type="password"
+          [(ngModel)]="credentials.newPassword"
+          name="newPassword"
+          required
+          placeholder="Digite a nova senha"
+        >
+      </div>
+
+      <button type="submit" class="login-button">Trocar Senha</button>
+    </form>
+  </div>
+</div>

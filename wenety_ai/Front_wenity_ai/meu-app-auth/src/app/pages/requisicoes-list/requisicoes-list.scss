@@ -1,0 +1,13 @@
+.container { padding: 20px; }
+.header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.btn-new { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; text-decoration: none; font-weight: bold; }
+
+.job-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.job-card {
+  background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd;
+  cursor: pointer; transition: transform 0.2s;
+  &:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+}
+.card-header { display: flex; justify-content: space-between; margin-bottom: 10px; h3 { margin: 0; font-size: 1.1rem; } }
+.status-badge { background: #e6f4ea; color: #1e8e3e; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; }
+.card-footer { margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; display: flex; justify-content: space-between; color: #666; font-size: 0.9rem; }

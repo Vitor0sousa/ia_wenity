@@ -1,0 +1,41 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Recuperar Senha</h1>
+      <p>Digite seu e-mail para redefinir sua senha</p>
+    </div>
+
+    <form (ngSubmit)="enviarRecuperacao()" class="login-form">
+      <div class="form-group">
+        <div class="input-container">
+          <input 
+            type="email" 
+            [(ngModel)]="email" 
+            name="email" 
+            placeholder="Digite seu e-mail" 
+            required
+          >
+        </div>
+      </div>
+
+      <button type="submit" class="login-button">Recuperar Senha</button>
+    </form>
+
+    <div class="login-footer">
+      <p>Lembrou da senha? <a routerLink="/login">Faça login</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="background-animation">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>

@@ -1,0 +1,365 @@
+// Variáveis de cor para consistência
+$color-primary: #007bff;
+$color-success: #28a745; // Verde
+$color-danger: #dc3545; // Vermelho
+$color-text-dark: #2c3e50;
+$color-text-light: #7f8c8d;
+$color-border: #eee;
+$color-bg-light: #f8f9fa;
+$color-bg-white: #fff;
+
+// Estilos da Página
+:host {
+  display: block;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.loading, .error-state {
+  text-align: center;
+  padding: 3rem;
+  background: $color-bg-white;
+  border-radius: 8px;
+  color: $color-text-light;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $color-border;
+
+  .title-group {
+    h1 {
+      margin: 10px 0 5px;
+      color: $color-text-dark;
+    }
+    .btn-back {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+      margin-bottom: 5px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .badge {
+    background: #e6f4ea;
+    color: #1e8e3e;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .meta {
+    text-align: right;
+    color: $color-text-light;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    p {
+      margin: 2px 0;
+    }
+  }
+}
+
+.requirements-card {
+  background: $color-bg-white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid $color-border;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+
+  h3 {
+    margin-top: 0;
+    color: $color-primary;
+    font-size: 1.1rem;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: 10px;
+  }
+
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .criteria-item {
+    p {
+      color: #555;
+      margin-top: 5px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.ranking-section {
+  h2 {
+    color: $color-text-dark;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: $color-bg-white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: $color-bg-light;
+    color: #666;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .score-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 0 auto;
+    border: 3px solid $color-danger;
+    color: $color-danger;
+
+    &.high { border-color: $color-success; color: $color-success; }
+    &.med { border-color: #ef6c00; color: #ef6c00; }
+  }
+
+  .text-muted {
+    color: #999;
+    font-size: 0.8rem;
+  }
+
+  .status-tag {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .btn-view {
+    border: 1px solid #ddd;
+    background: $color-bg-white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    &:hover {
+      background: $color-bg-light;
+      border-color: #bbb;
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  background: $color-bg-white;
+  border-radius: 8px;
+  color: $color-text-light;
+}
+
+
+/* ===============================
+   ESTILO DO MODAL DE ANÁLISE (APRIMORADO)
+   =============================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: $color-bg-white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid $color-border;
+
+  h3 { margin: 0; color: $color-text-dark; }
+
+  .btn-close {
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    &:hover { color: $color-text-dark; }
+  }
+}
+
+.modal-body {
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+  overflow-y: auto;
+
+  .analysis-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+  
+  .section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: $color-text-dark;
+
+    .icon {
+      margin-right: 5px;
+      font-size: 1.1rem;
+    }
+
+    &.text-success { color: $color-success; }
+    &.text-danger { color: $color-danger; }
+  }
+
+  .summary-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+    background-color: $color-bg-light;
+    padding: 10px;
+    border-left: 3px solid $color-primary;
+    margin: 0;
+  }
+
+  .two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr; // Empilha em telas pequenas
+    }
+
+    .analysis-section {
+      padding: 0;
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  }
+
+  .clean-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      line-height: 1.5;
+      font-size: 0.9rem;
+      color: #333;
+      margin-bottom: 5px;
+
+      &::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        color: $color-text-light;
+      }
+    }
+  }
+  
+  // Colore os bullet points
+  .strengths .clean-list li::before { color: $color-success; }
+  .weaknesses .clean-list li::before { color: $color-danger; }
+  
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .skill-tag {
+    background-color: #ecf0f1;
+    color: $color-text-dark;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: default;
+  }
+  
+  .text-muted {
+    font-style: italic;
+    color: $color-text-light;
+    font-size: 0.9rem;
+  }
+}
