@@ -1,0 +1,74 @@
+// ===================================
+// CORES DA PALETA - Azul Escuro
+// ===================================
+
+// Azul base - tons de profundidade
+$c-deep-ocean:  #001f3f; // O mais escuro (quase preto)
+$c-primary-blue: #004a8f; // Azul principal da marca
+$c-medium-blue: #0074D9; // Azul para interações/links
+$c-light-blue:  #6495ED; // Azul claro para hover ou destaque
+
+// Cores de Uso
+$c-text-light:  #ffffff;   // Para uso sobre fundo escuro
+$c-text-dark:   $c-deep-ocean; // Para uso sobre fundo claro
+$c-bg-subtle:   #f8f8f8;   // Fundo muito leve/sutil
+$c-border-gray: #e0e0e0;   // Borda leve
+
+
+// ===================================
+// ESTILOS GERAIS
+// ===================================
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $c-bg-subtle;
+  color: $c-text-dark;
+}
+
+// ===================================
+// COMPONENTES
+// ===================================
+
+.header {
+  // O fundo usa a cor principal
+  background-color: $c-primary-blue;
+  color: $c-text-light;
+  padding: 1rem 1.5rem; // Uso de unidades relativas
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+}
+
+.button-primary {
+  // A cor base do botão
+  background-color: $c-medium-blue;
+  color: $c-text-light;
+  border: 1px solid $c-deep-ocean;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; // Adiciona suavidade
+
+  // Estado de interação
+  &:hover {
+    background-color: $c-light-blue;
+    box-shadow: 0 4px 8px rgba($c-deep-ocean, 0.1); // Sombra sutil
+  }
+
+  // Estado desabilitado
+  &[disabled] {
+    background-color: $c-border-gray;
+    cursor: not-allowed;
+  }
+}
+
+.card {
+  background-color: $c-text-light; // Branco como fundo do cartão
+  border: 1px solid $c-border-gray;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba($c-deep-ocean, 0.05); // Sombra muito leve
+}

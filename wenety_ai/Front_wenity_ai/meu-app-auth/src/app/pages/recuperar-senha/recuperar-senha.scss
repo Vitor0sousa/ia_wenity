@@ -1,0 +1,196 @@
+// ===================================
+// VARIÁVEIS DE CORES (Reutilizando a Paleta de Azul Escuro)
+// ===================================
+
+$c-deep-ocean:  #001f3f; // Azul Escuro (Fundo principal)
+$c-primary-blue: #004a8f; // Azul da marca
+$c-medium-blue: #0074D9; // Azul para botões
+$c-light-blue:  #6495ED; // Azul de destaque/hover
+$c-text-light:  #ffffff; // Branco
+$c-text-dark:   #333333; // Cinza escuro para texto
+$c-card-bg:     #ffffff; // Fundo do Card
+$c-border-gray: #e0e0e0; // Borda leve
+
+// Variáveis de layout
+$sz-border-radius: 8px;
+$sz-transition-speed: 0.3s;
+$sz-max-width: 400px;
+
+
+// ===================================
+// ESTILIZAÇÃO DO CONTAINER PRINCIPAL
+// ===================================
+
+.login-container {
+  // Centraliza o conteúdo vertical e horizontalmente na tela
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  z-index: 10; // Fica acima da animação de fundo
+}
+
+.login-card {
+  width: 100%;
+  max-width: $sz-max-width;
+  background-color: $c-card-bg;
+  border-radius: $sz-border-radius;
+  box-shadow: 0 10px 25px rgba($c-deep-ocean, 0.3); // Sombra mais proeminente
+  padding: 40px;
+  text-align: center;
+}
+
+// ===================================
+// CABEÇALHO DO FORMULÁRIO
+// ===================================
+
+.login-header {
+  margin-bottom: 30px;
+
+  h1 {
+    color: $c-primary-blue;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+  }
+
+  p {
+    color: $c-text-dark;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+// ===================================
+// FORMULÁRIO E INPUTS
+// ===================================
+
+.login-form {
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .input-container {
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid $c-border-gray;
+      border-radius: $sz-border-radius;
+      font-size: 1rem;
+      transition: border-color $sz-transition-speed ease, box-shadow $sz-transition-speed ease;
+      box-sizing: border-box; // Garante que padding e border estão dentro da largura
+
+      &:focus {
+        border-color: $c-medium-blue;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($c-medium-blue, 0.2); // Anel de foco sutil
+      }
+    }
+  }
+}
+
+// ===================================
+// BOTÃO PRINCIPAL
+// ===================================
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: $c-medium-blue;
+  color: $c-text-light;
+  border: none;
+  border-radius: $sz-border-radius;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color $sz-transition-speed ease;
+
+  &:hover {
+    background-color: $c-light-blue;
+  }
+}
+
+// ===================================
+// RODAPÉ E LINK DE LOGIN
+// ===================================
+
+.login-footer {
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: $c-text-dark;
+
+  a {
+    color: $c-medium-blue;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color $sz-transition-speed ease;
+
+    &:hover {
+      color: $c-primary-blue;
+      text-decoration: underline;
+    }
+  }
+}
+
+
+// ===================================
+// ANIMAÇÃO DE FUNDO (Background Animation)
+// ===================================
+
+// Força a ocupação total da tela
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; // Previne barras de rolagem
+}
+
+.background-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $c-deep-ocean; // Cor de fundo principal
+  overflow: hidden;
+  z-index: 1; // Fica atrás do container de login
+
+  span {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 25px;
+    height: 25px;
+    background: rgba($c-primary-blue, 0.2); // Bolhas semi-transparentes
+    animation: animate 25s linear infinite;
+    bottom: -150px; // Começam fora da tela
+    opacity: 0;
+
+    &:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+    &:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+    &:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+    &:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+    &:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+    &:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+    &:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+    &:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+    &:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+    &:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+  }
+}
+
+// Keyframes para a animação das bolhas
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%; // Transforma em círculo ao subir
+  }
+}
