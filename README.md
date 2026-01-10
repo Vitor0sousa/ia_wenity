@@ -66,7 +66,7 @@ O objetivo do projeto é **otimizar processos de recrutamento**, reduzindo o tem
     # Autores:
   👨‍💻 Vitor Sousa - Backend e Api Rest([GitHub](https://github.com/vitor0sousa))
 
-  👨‍💻 Enzo Barros - CRUD e Frontend([GitHub](https://github.com))
+  👨‍💻 Enzo Barros - CRUD e Frontend([GitHub](https://github.com/enzoobarros))
 
   👨‍💻 Vitor Lopes - CRUD E Frontend([GitHub](https://github.com))
 
