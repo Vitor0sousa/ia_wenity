@@ -64,13 +64,13 @@ O objetivo do projeto é **otimizar processos de recrutamento**, reduzindo o tem
   - JSON para troca de dados
  
     # Autores:
-  👩‍💻 Vitor Sousa - Backend e Api Rest([GitHub](https://github.com/vitor0sousa))
+  👨‍💻 Vitor Sousa - Backend e Api Rest([GitHub](https://github.com/vitor0sousa))
 
-  👩‍💻 Enzo Barros - CRUD e Frontend([GitHub](https://github.com))
+  👨‍💻 Enzo Barros - CRUD e Frontend([GitHub](https://github.com))
 
-  👩‍💻 Vitor Lopes - CRUD E Frontend([GitHub](https://github.com))
+  👨‍💻 Vitor Lopes - CRUD E Frontend([GitHub](https://github.com))
 
-  👩‍💻 Lucas Aquino - Documentação e Apresentação da ideia
+  👨‍💻 Lucas Aquino - Documentação e Apresentação da ideia
   
 
 
